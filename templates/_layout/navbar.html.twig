@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <style>
+    .bs-icon-sm {
+    --bs-icon-size: 1rem;
+    }
+    .bs-icon.bs-icon-rounded {
+    border-radius: .5rem;
+    }
+    .bs-icon {
+    --bs-icon-size: .75rem;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--bs-icon-size);
+    width: calc(var(--bs-icon-size) * 2);
+    height: calc(var(--bs-icon-size) * 2);
+    color: var(--bs-primary);
+    }
+
+</style>
+</head>
+
+
+<nav class="navbar navbar-expand-md py-3" style="background: #1b1b1b;">
+    <div class="container"><a class="navbar-brand d-flex align-items-center" href="/accueil"><span class="bs-icon-sm bs-icon-rounded d-flex justify-content-center align-items-center me-2 bs-icon" style="color: #FFFFFF; background-color: #ecab03; width: 35px; height: 35px;">
+        <img src="{{ asset('images/icone.png') }}" width="24" height="24">
+    </span><span style="color: #ffffff;font-family: Inter, sans-serif;">FNM</span></a>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link active" href="../articles/1" style="color: #ffffff;font-family: Inter, sans-serif;margin-left: 40px;">Traditionnel</a></li>
+                <li class="nav-item"><a class="nav-link active" href="../articles/2" style="color: #ffffff;font-family: Inter, sans-serif;margin-left: 40px;">Tex-mex</a></li>
+                <li class="nav-item"><a class="nav-link active" href="../articles/3" style="color: #ffffff;font-family: Inter, sans-serif;margin-left: 40px;">Oriental</a></li>
+                <li class="nav-item"><a class="nav-link active" href="../articles/4" style="color: #ffffff;font-family: Inter, sans-serif;margin-left: 40px;">Américain</a></li>
+            </ul>
+            <span class="navbar-text"><a href="../panier"><img width="29" height="29" src="{{ asset('images/achat_jaune.png') }}" style="margin: 0px;margin-right: 10px;"></a></span>
+                <a class="btn" href="{{ path('app_logout') }}" style="color: rgb(255,255,255);font-family: Inter, sans-serif; background-color: #ecab03;">Se déconnecter</a>
+            </div>
+    </div>
+</nav>
+
+
+
+
+
+
+
+
