@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        body {
+            
+            font-family: 'Arial', sans-serif;
+            background-image: url({{ asset('images/fond_accueil.png') }}'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .transparent-bg {
+            background-color: rgba(0, 0, 0, 0.7); 
+            color: #fff;
+        }
+
+        .content-container {
+            margin: 50px; 
+            padding: 20px; 
+            border: 1px solid #fff; 
+            border-radius: 10px; 
+        }
+
+    </style>
+
+
+<body class="bg-image">
+    <div class="container-fluid transparent-bg text-center vh-100 d-flex align-items-center  col-md-9">
+        <div class="content-container mx-5 px-5 justify-content-center">
+            <h1 class="display-4">Bonjour</h1>
+            <p class=" mx-5 px-5 lead">La société FNM propose une variété de délices culinaires pour satisfaire tous les palais. Notre menu comprend des plats traditionnels riches en saveurs, des spécialités Tex-mex pour les amateurs de cuisine épicée, des délices orientaux pour une expérience exotique, et une sélection de plats américains pour ceux qui aiment les classiques. Explorez notre diversité gastronomique et connectez-vous pour passer votre commande dès maintenant.</p>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+{% endblock %}
+
+

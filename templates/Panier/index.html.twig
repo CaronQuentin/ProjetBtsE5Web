@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div class="container py-5 mb-0">
+
+    {% if panierItems is not empty %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Quantité</th>
+                <th>Prix unitaire</th>
+                <th>Prix total</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in panierItems %}
+            <tr>
+                <td>{{article.nom}}</td>
+                <td>{{article.quantite}}</td>
+                <td>{{article.prix}}€</td>
+                <td>{{article.quantite * article.prix}}€</td>
+                <td class="text-center">
+                <form class="d-inline-flex" method="post" action="{{ path('dimArticle') }}">
+							<input type="hidden" name="nom" value="{{ article.nom }}">
+							<button type="submit" class="btn">
+								<button href="" class="btn btn-danger">-</button>
+							</button>
+                </form>
+                <form class="d-inline-flex" method="post" action="{{ path('suppArticle') }}">
+							<input type="hidden" name="nom" value="{{ article.nom }}">
+							<button type="submit" class="btn">
+								<button href="" class="btn btn-danger">Supprimer</button>
+							</button>
+                </form>
+                <form class="d-inline-flex" method="post" action="{{ path('ajtArticle') }}">
+							<input type="hidden" name="nom" value="{{ article.nom }}">
+							<button type="submit" class="btn">
+								<button href="" class="btn btn-danger">+</button>
+							</button>
+                </form>
+                    
+                </td>
+            </tr>
+        {% endfor %}
+            
+        </tbody>
+    </table>
+    <div class="container ml-600">
+        <p class="txtprix text-center" style="color: white">Prix total : <span id="montantTotal">{{prix}}</span> €</p>
+    </div>
+    <form method="post" action="{{ path('validationCommande') }}">
+        <button class="btn btn-warning text-light" type="submit">Payer</button>
+    </form>
+
+    {% else %}
+    <div class="container pt-5">
+        <p class="text-center mt-5" style="font-size:100px">Votre panier est vide</p>
+        <p class="text-center mb-5">Allez dans les differentes categories afin de choisir ce que vous desirez !</p>
+    {% endif %}
+</div>
+{% endblock %}
