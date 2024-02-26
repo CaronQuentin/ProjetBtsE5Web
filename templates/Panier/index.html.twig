@@ -2,7 +2,7 @@
 
 
 {% block body %}
-<div class="container py-5 mb-0">
+<div class="container py-5 mb-0" style="background-color: #ec9d13!important">
 
     {% if panierItems is not empty %}
     <table class="table">
@@ -49,10 +49,10 @@
         </tbody>
     </table>
     <div class="container ml-600">
-        <p class="txtprix text-center" style="color: white">Prix total : <span id="montantTotal">{{prix}}</span> €</p>
+        <p class="txtprix text-center">Prix total : <span id="montantTotal">{{prix}}</span> €</p>
     </div>
     <form method="post" action="{{ path('validationCommande') }}">
-        <button class="btn btn-warning text-light" type="submit">Payer</button>
+        <button class="btn btn-dark text-light" type="submit">Payer</button>
     </form>
 
     {% else %}
