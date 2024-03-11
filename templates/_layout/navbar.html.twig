@@ -39,7 +39,8 @@
                 <li class="nav-item"><a class="nav-link active" href="../articles/3" style="color: #ffffff;font-family: Inter, sans-serif;margin-left: 40px;">Oriental</a></li>
                 <li class="nav-item"><a class="nav-link active" href="../articles/4" style="color: #ffffff;font-family: Inter, sans-serif;margin-left: 40px;">Américain</a></li>
             </ul>
-            <span class="navbar-text"><a href="../panier"><img width="29" height="29" src="{{ asset('images/achat_jaune.png') }}" style="margin: 0px;margin-right: 10px;"></a></span>
+                <a class="btn mr-4" href="{{ path('app_article_crud_index') }}" style="color: rgb(255,255,255);font-family: Inter, sans-serif; background-color: #ecab03;">Ajout/Modification</a>
+            <span class="navbar-text mr-2"><a href="../panier"><img width="29" height="29" src="{{ asset('images/achat_jaune.png') }}" style="margin: 0px;margin-right: 10px;"></a></span>
                 <a class="btn" href="{{ path('app_logout') }}" style="color: rgb(255,255,255);font-family: Inter, sans-serif; background-color: #ecab03;">Se déconnecter</a>
             </div>
     </div>

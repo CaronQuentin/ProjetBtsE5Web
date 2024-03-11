@@ -28,8 +28,8 @@ class RegisterController extends AbstractController
     #[Route('/verification', name: 'app_verification')]
     public function verification(Request $request): Response
     {
-        $email = $request->request->get('email'); //nom dans le formulaire
-        $password = $request->request->get('password'); //nom dans le formulaire
+        $email = $request->request->get('email');
+        $password = $request->request->get('password');
         $error = null;
 
         //check si l'utilisateur existe

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Article{% endblock %}
+
+{% block body %}
+<div class="container py-5 mb-0" style="background-color: #ec9d13!important">
+    <h1>Create new Article</h1>
+
+    {{ include('article_crud/_form.html.twig') }}
+
+    <a href="{{ path('app_article_crud_index') }}">back to list</a>
+</div>
+{% endblock %}
