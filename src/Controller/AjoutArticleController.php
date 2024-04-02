@@ -20,14 +20,28 @@ class AjoutArticleController extends AbstractController
     }
 
     #[Route('/articlesAjout', name: 'app_articleAjoutForm')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $session = $request->getSession();
+        if (!$session->has('adresseMail')) {
+            return $this->redirectToRoute('app_login');
+        }
+        if ($session->get('role') != 1) {
+            return $this->redirectToRoute('app_accueil');
+        }
         return $this->render('ajout_article\index.html.twig');
     }
 
     #[Route('/articlesAjoutValidation', name: 'app_articleAjoutValidation')]
     public function ajoutArticle(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $session = $request->getSession();
+        if (!$session->has('adresseMail')) {
+            return $this->redirectToRoute('app_login');
+        }
+        if ($session->get('role') != 1) {
+            return $this->redirectToRoute('app_accueil');
+        }
         $nom = $request->request->get('nom');
         $description = $request->request->get('description');
         $image = $request->request->get('image');

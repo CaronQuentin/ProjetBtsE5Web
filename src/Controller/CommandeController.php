@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use DateTime;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,8 +25,12 @@ class CommandeController extends AbstractController
     }
 
     #[Route('/validationCommande', name: 'validationCommande')]
-    public function validationCommande(EntityManagerInterface $entityManager): Response
+    public function validationCommande(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $session = $request->getSession();
+        if (!$session->has('adresseMail')) {
+            return $this->redirectToRoute('app_login');
+        }
         $panierItems = $entityManager->getRepository(Panier::class)->findAll();
 
         $lstnom = [];

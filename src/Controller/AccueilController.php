@@ -30,8 +30,12 @@ class AccueilController extends AbstractController
        
 
     #[Route('/accueil', name: 'app_accueil')]
-    public function accueil(): Response
+    public function accueil(Request $request): Response
     {
+        $session = $request->getSession();
+        if (!$session->has('adresseMail')) {
+            return $this->redirectToRoute('app_login');
+        }
         return $this->render('accueil/index.html.twig');
     }
 

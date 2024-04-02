@@ -30,8 +30,12 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/articles/{idCategorie}', name: 'app_article')]
-    public function articlesParCategorie(int $idCategorie, ArticleRepository $articleRepository): Response
+    public function articlesParCategorie(Request $request, int $idCategorie, ArticleRepository $articleRepository): Response
     {
+        $session = $request->getSession();
+        if (!$session->has('adresseMail')) {
+            return $this->redirectToRoute('app_login');
+        }
         $articles = $articleRepository->findBy(['Id_Categorie' => $idCategorie]);
 
         return $this->render('article/index.html.twig', [

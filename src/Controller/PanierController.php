@@ -30,6 +30,10 @@ class PanierController extends AbstractController
     #[Route("/add", name: "add_panier", methods: "POST")]
     public function addPanier(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $session = $request->getSession();
+        if (!$session->has('adresseMail')) {
+            return $this->redirectToRoute('app_login');
+        }
         $id = $request->request->get('id');
         $nom = $request->request->get('nom');
         $prix = $request->request->get('prix');
@@ -56,8 +60,12 @@ class PanierController extends AbstractController
     }
 
     #[Route("/panier", name: "panier", methods: "GET")]
-    public function panier(): Response
+    public function panier(Request $request): Response
     {
+        $session = $request->getSession();
+        if (!$session->has('adresseMail')) {
+            return $this->redirectToRoute('app_login');
+        }
         $panierItems = $this->entityManager->getRepository(Panier::class)->findAll();
         if ($panierItems) {
             $prix = $this->entityManager->getRepository(Panier::class)->calculateTotalPrice();
@@ -77,6 +85,10 @@ class PanierController extends AbstractController
     #[Route("/dimArticle", name: "dimArticle")]
     public function dimArticle(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $session = $request->getSession();
+        if (!$session->has('adresseMail')) {
+            return $this->redirectToRoute('app_login');
+        }
         $nom = $request->request->get('nom');
 
         $panierItem = $entityManager->getRepository(Panier::class)->findOneBy(['Nom' => $nom]);
@@ -99,6 +111,10 @@ class PanierController extends AbstractController
     #[Route("/suppArticle", name: "suppArticle")]
     public function suppArticle(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $session = $request->getSession();
+        if (!$session->has('adresseMail')) {
+            return $this->redirectToRoute('app_login');
+        }
         $nom = $request->request->get('nom'); // 
 
         $panierItem = $entityManager->getRepository(Panier::class)->findOneBy(['Nom' => $nom]); // Trouver l'élément du panier par son nom
@@ -115,6 +131,10 @@ class PanierController extends AbstractController
     #[Route("/ajtArticle", name: "ajtArticle")]
     public function ajtArticle(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $session = $request->getSession();
+        if (!$session->has('adresseMail')) {
+            return $this->redirectToRoute('app_login');
+        }
         $nom = $request->request->get('nom'); // 
 
         $panierItem = $entityManager->getRepository(Panier::class)->findOneBy(['Nom' => $nom]); // Trouver l'élément du panier par son nom

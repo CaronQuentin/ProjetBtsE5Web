@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <style>
+        .miseEnPage {
+            color: #fff;
+            margin-left: 40%;
+        }
+    </style>
+    <div class="miseEnPage">
+        <h1>Modifier l'article</h1>
+        
+        <div class="ml-20">
+        {{ form_start(articleForm) }}
+            <div class="d-flex">
+                {{ form_label(articleForm.nom) }}<p class="mx-2">:</p>
+                {{ form_widget(articleForm.nom) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(articleForm.description) }}<p class="mx-2">:</p>
+                {{ form_widget(articleForm.description) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(articleForm.prix) }}<p class="mx-2">:</p>
+                {{ form_widget(articleForm.prix) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(articleForm.image) }}<p class="mx-2">:</p>
+                {{ form_widget(articleForm.image) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(articleForm.Id_Categorie) }}<p class="mx-2">:</p>
+                {{ form_widget(articleForm.Id_Categorie) }}
+            </div>
+            
+        {{ form_end(articleForm) }}
+        </div>
+    </div>
+
+{% endblock %}

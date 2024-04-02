@@ -39,8 +39,11 @@
                 <li class="nav-item"><a class="nav-link active" href="../articles/3" style="color: #ffffff;font-family: Inter, sans-serif;margin-left: 30px;">Oriental</a></li>
                 <li class="nav-item"><a class="nav-link active" href="../articles/4" style="color: #ffffff;font-family: Inter, sans-serif;margin-left: 30px;">Américain</a></li>
 
-                <li class="nav-item"><a class="nav-link active" href="{{ path('app_articleAjoutForm') }}" style="color: #ffffff;font-family: Inter, sans-serif;margin-left: 30px;">Ajout Article</a></li>
-                <li class="nav-item"><a class="nav-link active" href="{{ path('app_list_articles') }}" style="color: #ffffff;font-family: Inter, sans-serif;margin-left: 30px;">Supprimer/modifier Article</a></li>
+                {% if app.session.get('role') == 1 %}
+                    <li class="nav-item"><a class="nav-link active" href="{{ path('app_articleAjoutForm') }}" style="color: #ffffff;font-family: Inter, sans-serif;margin-left: 30px;">Ajout Article</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{ path('app_list_articles') }}" style="color: #ffffff;font-family: Inter, sans-serif;margin-left: 30px;">Supprimer/modifier Article</a></li>
+                {% endif %}
+
             </ul>
             <span class="navbar-text"><a href="../panier"><img width="29" height="29" src="{{ asset('images/achat_jaune.png') }}" style="margin: 0px;margin-right: 10px;"></a></span>
                 <a class="btn" href="{{ path('app_logout') }}" style="color: rgb(255,255,255);font-family: Inter, sans-serif; background-color: #ecab03;">Se déconnecter</a>
