@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class RegisterController extends AbstractController
 {
@@ -26,7 +27,7 @@ class RegisterController extends AbstractController
     }
 
     #[Route('/verification', name: 'app_verification')]
-    public function verification(Request $request): Response
+    public function verification(Request $request, Session $session): Response
     {
         $email = $request->request->get('email'); //nom dans le formulaire
         $password = $request->request->get('password'); //nom dans le formulaire
@@ -42,6 +43,10 @@ class RegisterController extends AbstractController
                 'error' => $error,
             ]);
         }
+        $session = $request->getSession();
+        $session->start();
+        $session->set('role', $user->getIdRole());
+        $session->set('adresseMail', $user->getAdresseMail());
         return $this->redirectToRoute('app_accueil');
 
     }
@@ -94,8 +99,9 @@ class RegisterController extends AbstractController
     }
 
     #[Route('/deconnexion', name: 'app_logout')]
-    public function deconnexion(): Response
+    public function deconnexion(Session $session): Response
     {
+        $session->invalidate();
         return $this->redirectToRoute('app_login');
     }
 }

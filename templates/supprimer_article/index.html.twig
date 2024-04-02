@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <style>
+        .miseEnPage {
+            color: #fff;
+
+            background-color: #ec9d13!important;
+        }
+        .suppr {
+            color: #ff0000;
+            text-decoration: none;
+        }
+        .modif {
+            color: #00ff00;
+            text-decoration: none;
+        }
+    </style>
+    <div class="miseEnPage container py-5 mb-0">
+        {% if error %}
+            <div>
+                {{ error }} 
+            </div>
+        {% endif %}
+
+        {% for article in articles %}
+            <div>
+                <h2>{{ article.nom }}</h2>
+                <p>{{ article.description }}</p>
+                <a class="suppr" href="{{ path('app_supprimer_article', {id: article.id}) }}">Supprimer</a>
+                <a class="modif" href="{{ path('app_modifier_article', {id: article.id}) }}">Modifier</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

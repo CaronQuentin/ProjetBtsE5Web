@@ -38,4 +38,5 @@ class ArticleController extends AbstractController
             'articles' => $articles,
             'idCategorie' => $idCategorie,
         ]);
-    }}
+    }
+}

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: 0;
+        }
+
+        input, select {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #f00;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .miseEnPage {
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {            
+            color: #ffffff;
+            padding-top: 5%;
+            text-align: center;
+        }
+    </style>
+    <h1>Créer un article</h1>
+    <div class="miseEnPage">
+        <form action="{{ path('app_articleAjoutValidation') }}" method="post" enctype="multipart/form-data">
+            <label for="nom">Nom</label>
+            <input type="text" name="nom" id="nom" required>
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description" required>
+            <label for="image">Image</label>
+            <input type="text" name="image" id="image" required>
+            <label for="prix">Prix</label>
+            <input type="number" name="prix" id="prix" required>
+            <label for="categorie">Catégorie</label>
+            <select name="categorie" id="categorie">
+                <option value="1">Traditionnel</option>
+                <option value="2">Tex-mex</option>
+                <option value="3">Oriental</option>
+                <option value="4">Américain</option>
+            </select>
+
+
+            <button type="submit" name="ajout">Ajouter l'article</button>
+        </form>
+    </div>
+{% endblock %}
