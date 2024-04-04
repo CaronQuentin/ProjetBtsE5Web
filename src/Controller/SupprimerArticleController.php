@@ -49,13 +49,39 @@ class SupprimerArticleController extends AbstractController
         if ($session->get('role') != 1) {
             return $this->redirectToRoute('app_accueil');
         }
-        $repository = $entityManager->getRepository(Article::class);
-        $article = $repository->find($id);
-        $articles = $repository->findAll();
 
-        if ($article) {
-            $entityManager->remove($article);
-            $entityManager->flush();
+        try {
+            $repository = $entityManager->getRepository(Article::class);
+            $articles = $repository->findAll();
+        }
+        catch (\Exception $e) {
+            return $this->render('supprimer_article/index.html.twig', [
+                'error' => 'Erreur lors de la récupération des articles',
+                'articles' => $articles,
+            ]);
+        }
+        try {
+            $article = $repository->find($id);
+        }
+        catch (\Exception $e) {
+            return $this->render('supprimer_article/index.html.twig', [
+                'error' => "Erreur lors de la récupération de l\'article avec l' . $id . ' id",
+                'articles' => $articles,
+            ]);
+        }
+
+        try {
+            if ($article) {
+                $entityManager->remove($article);
+                $entityManager->flush();
+                $articles = $repository->findAll();
+            }
+        }
+        catch (\Exception $e) {
+            return $this->render('supprimer_article/index.html.twig', [
+                'error' => 'Erreur lors de la suppression de l\'article',
+                'articles' => $articles,
+            ]);
         }
         return $this->render('supprimer_article/index.html.twig', [
             'error' => 'Article supprimé',

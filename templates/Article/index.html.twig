@@ -19,6 +19,7 @@
 						<span>
 						<form method="post" action="{{ path('add_panier') }}">
 							<input type="hidden" name="id" value="{{ article.id }}">
+							{{ article.id }}
 							<input type="hidden" name="nom" value="{{ article.Nom }}">
 							<input type="hidden" name="prix" value="{{ article.Prix }}">
 							<input type="hidden" name="quantite" value="1">
