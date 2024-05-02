@@ -40,7 +40,7 @@ class PanierController extends AbstractController
         $quantite = $request->request->get('quantite');
         $idCategorie = $request->request->get('id_categorie');
 
-        $panier = $entityManager->getRepository(Panier::class)->findOneBy(['Nom' => $nom]);
+        $panier = $entityManager->getRepository(Panier::class)->findOneBy(['id_Article' => $id]);
         if ($panier) {
             $panier->setQuantite($panier->getQuantite() + 1);
         } else {

@@ -2,50 +2,47 @@
 
 {% block body %}
 
-	{% if articles is not empty %}
-		<div class="row  mt-3 d-inline-flex">
-			{% for  index,article in articles %}
-				<div class="col-md-4">
-					<div>
-						<img src="{{ asset('images/' ~ article.image ~ '.jpg') }}" class="img-fluid w-75 mx-auto d-block rounded-3 p-0 border-primary-perso"/>
-					</div>
-					<div>
-						<h3 class="d-flex justify-content-center text-white fs-4 mt-2">
-						{{ article.Nom }} &emsp; {{ article.Prix }}€ &emsp; 
-						<img src="{{ asset('images/PointInterrogation.png') }}" width="30px" alt="Panier" title="{{ article.Description }}">
-						</h3>
-					</div>
-					<div class="d-flex justify-content-center">
-						<span>
-						<form method="post" action="{{ path('add_panier') }}">
-							<input type="hidden" name="id" value="{{ article.id }}">
-							{{ article.id }}
-							<input type="hidden" name="nom" value="{{ article.Nom }}">
-							<input type="hidden" name="prix" value="{{ article.Prix }}">
-							<input type="hidden" name="quantite" value="1">
-							<input type="hidden" name="id_categorie" value="{{idCategorie}}">
-							<button type="submit" class="btn">
-								<img src="{{ asset('images/achat.png') }}" class="img-fluid w-10 pb-3" alt="Achat">
-							</button>
-						</span>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-	{% else %}
-		<p>Aucun article trouvé pour cette catégorie.</p>
-	{% endif %}
+  {% if articles is not empty %}
+    <div class="row mt-3 d-inline-flex">
+      {% for article in articles %}
+        <div class="col-md-4">
+          <form method="post" action="{{ path('add_panier', {'id': article.id}) }}"> <div>
+              <img src="{{ asset('images/' ~ article.image ~ '.jpg') }}" class="img-fluid w-75 mx-auto d-block rounded-3 p-0 border-primary-perso"/>
+            </div>
+            <div>
+              <h3 class="d-flex justify-content-center text-white fs-4 mt-2">
+                {{ article.Nom }} &emsp; {{ article.Prix }}€ &emsp; 
+                <img src="{{ asset('images/PointInterrogation.png') }}" width="30px" alt="Panier" title="{{ article.Description }}">
+              </h3>
+            </div>
+            <div class="d-flex justify-content-center">
+              <span>
+                <input type="hidden" name="id" value="{{ article.id }}">  <input type="hidden" name="nom" value="{{ article.Nom }}">
+                <input type="hidden" name="prix" value="{{ article.Prix }}">
+                <input type="hidden" name="quantite" value="1">
+                <input type="hidden" name="id_categorie" value="{{idCategorie}}">
+                <button type="submit" class="btn">
+                  <img src="{{ asset('images/achat.png') }}" class="img-fluid w-10 pb-3" alt="Achat">
+                </button>
+              </span>
+            </div>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Aucun article trouvé pour cette catégorie.</p>
+  {% endif %}
 
-	<style>
-
-		.border-primary-perso {
-			border: solid #ECAB03 2px;
-		}
-		.background-primary-perso {
-			background-color: #ECAB03;
-		}
-		.w-10 {
-			width: 10%;
-		}
-	</style>
+  <style>
+    .border-primary-perso {
+      border: solid #ECAB03 2px;
+    }
+    .background-primary-perso {
+      background-color: #ECAB03;
+    }
+    .w-10 {
+      width: 10%;
+    }
+  </style>
 {% endblock %}

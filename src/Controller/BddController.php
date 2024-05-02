@@ -259,8 +259,9 @@ class BddController extends AbstractController
             $user = new Utilisateur();
             $user->setNom('admin');
             $user->setPrenom('admin');
-            $user->setAdresseMail('jesuisadmin@gmail.com');
-            $user->setMotDePasse('admin');
+            $user->setAdresseMail('admin@admin.fr');
+            $hashedPassword = password_hash('admin0', PASSWORD_DEFAULT);
+            $user->setMotDePasse($hashedPassword);
             $user->setAdressePostale('admin');
             $user->setNumeroDeTelephone('admin');
             $user->setIdRole(1);
